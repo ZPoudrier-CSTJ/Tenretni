@@ -33,7 +33,7 @@ class TicketDataSource: JsonDataSource() {
     fun updateOne(href: String, action: String): Ticket {
         //Envoie au serveur avec un POST
         //TODO: check if path GOOD
-        var fullpath = "$href/actions?type=$action"
+        val fullpath = "$href/actions?type=$action"
         val (_,_,result) = fullpath.httpPost().responseJson()
         //Gérer la réponse
         return when(result){

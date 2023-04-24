@@ -14,6 +14,8 @@ object Constants {
     object Delay {
         private const val SECOND = 1000L
         const val TICKET_DELAY = SECOND * 30
+        const val CUSTOMER_GATEWAYS_DELAY = SECOND * 30
+        const val GATEWAY_DETAIL_DELAY = SECOND * 30
     }
 
     const val FLAG_API_URL = "https://flagcdn.com/h40/%s.png"
