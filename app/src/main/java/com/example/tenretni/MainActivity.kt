@@ -1,5 +1,7 @@
 package com.example.tenretni
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
@@ -26,10 +28,16 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
+                R.id.navigation_tickets, R.id.navigation_gateways, R.id.navigation_network
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+    }
+
+    companion object {
+        fun newIntent(context : Context) : Intent {
+            return Intent(context, MainActivity::class.java)
+        }
     }
 }

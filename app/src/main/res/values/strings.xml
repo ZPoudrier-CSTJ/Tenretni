@@ -1,7 +1,24 @@
 <resources>
     <string name="app_name">Tenretni</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
-    <string name="title_activity_loading">LoadingActivity</string>
+    <string name="title_tickets">Tickets</string>
+    <string name="title_gateways">Gateways</string>
+    <string name="title_network">Network</string>
+    <string name="title_activity_loading">Terentni</string>
+
+    <string name="loadingFormat">Loading %d/%d …</string>
+    <string name="ticketNumber">Ticket %s</string>
+    <string name="apiErrorMessage">Error while retriving the data from the server.</string>
+
+    <string name="txtPriorityLow">Low</string>
+    <string name="txtPriorityNormal">Normal</string>
+    <string name="txtPriorityHigh">High</string>
+    <string name="txtPriorityCritical">Critical</string>
+
+    <string name="txtStateOpen">Open</string>
+    <string name="txtStateSolve">Solve</string>
+    <string name="install">Install</string>
+    <string name="solve">Solve</string>
+    <!-- TODO: Remove or change this placeholder text -->
+
+
 </resources>

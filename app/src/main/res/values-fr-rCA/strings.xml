@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Tenretni</string>
+
+    <string name="title_tickets">Billets</string>
+    <string name="title_gateways">Bornes</string>
+    <string name="title_network">Réseau</string>
+    <string name="title_activity_loading">Terentni</string>
+
+    <string name="loadingFormat">Chargement %d/%d …</string>
+    <string name="ticketNumber">Billet %s</string>
+    <string name="apiErrorMessage">Erreur lors du chargement des données du serveur.</string>
+
+    <string name="txtPriorityLow">Bas</string>
+    <string name="txtPriorityNormal">Normal</string>
+    <string name="txtPriorityHigh">Haut</string>
+    <string name="txtPriorityCritical">Critique</string>
+
+    <string name="txtStateOpen">Ouvert</string>
+    <string name="txtStateSolve">Fermé</string>
+    <string name="install">Installer</string>
+    <string name="solve">Résoudre</string>
+</resources>
