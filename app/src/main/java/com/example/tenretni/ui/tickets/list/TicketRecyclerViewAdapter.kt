@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tenretni.R
 import com.example.tenretni.core.ColorHelper
+import com.example.tenretni.core.DateHelper
 import com.example.tenretni.core.TranslationHelper
 import com.example.tenretni.databinding.ItemTicketBinding
 import com.example.tenretni.domain.models.Ticket
@@ -33,10 +34,10 @@ class TicketRecyclerViewAdapter (
 
         fun bind(ticket: Ticket)  {
             binding.txvTicketNb.text = itemView.context.getString(R.string.ticketNumber, ticket.ticketNumber)
-            binding.txvTicketDate.text = ticket.createdDate
+            binding.txvTicketDate.text = DateHelper.formatISODate(ticket.createdDate)
             binding.chipTicketPriority.text = TranslationHelper.ticketPriorityString(itemView.context, ticket.priority)
             binding.chipTicketPriority.chipBackgroundColor = ColorHelper.ticketPriorityColor(itemView.context, ticket.priority)
-            binding.chipTicketState.text = TranslationHelper.ticketStatusColor(itemView.context, ticket.status)
+            binding.chipTicketState.text = TranslationHelper.ticketStatusString(itemView.context, ticket.status)
             binding.chipTicketState.chipBackgroundColor = ColorHelper.ticketStatusColor(itemView.context, ticket.status)
 
 

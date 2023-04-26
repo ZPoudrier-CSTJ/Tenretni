@@ -1,8 +1,6 @@
 package com.example.tenretni.core
 
 import android.content.Context
-import android.content.res.ColorStateList
-import androidx.core.content.ContextCompat
 import com.example.tenretni.R
 
 object TranslationHelper {
@@ -16,10 +14,18 @@ object TranslationHelper {
         }
     }
 
-    fun ticketStatusColor(context: Context, status: String): String {
+    fun ticketStatusString(context: Context, status: String): String {
         return when (Constants.TicketStatus.valueOf(status)) {
             Constants.TicketStatus.Open -> context.getString(R.string.txtStateOpen)
             Constants.TicketStatus.Solved -> context.getString(R.string.txtStateSolve)
+        }
+
+    }
+
+    fun connectionStatusString(context: Context, status: String): String {
+        return when (Constants.ConnectionStatus.valueOf(status)) {
+            Constants.ConnectionStatus.Online -> context.getString(R.string.txtGatewayStateOnline)
+            Constants.ConnectionStatus.Offline -> context.getString(R.string.txtGatewayStateOffline)
         }
 
     }

@@ -20,4 +20,8 @@
     <string name="txtStateSolve">Fermé</string>
     <string name="install">Installer</string>
     <string name="solve">Résoudre</string>
+    <string name="open">Ouvrir</string>
+
+    <string name="txtGatewayStateOnline">En Ligne</string>
+    <string name="txtGatewayStateOffline">Hors Ligne</string>
 </resources>

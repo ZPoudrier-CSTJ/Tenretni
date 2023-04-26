@@ -15,9 +15,13 @@
     <string name="txtPriorityCritical">Critical</string>
 
     <string name="txtStateOpen">Open</string>
-    <string name="txtStateSolve">Solve</string>
+    <string name="txtStateSolve">Solved</string>
     <string name="install">Install</string>
-    <string name="solve">Solve</string>
+    <string name="solve">Solved</string>
+    <string name="open">Open</string>
+
+    <string name="txtGatewayStateOnline">Online</string>
+    <string name="txtGatewayStateOffline">Offline</string>
     <!-- TODO: Remove or change this placeholder text -->
 
 

@@ -7,11 +7,12 @@
     tools:context=".ui.tickets.detail.DetailTicketFragment">
 
     <include
-        android:id="@+id/include"
+        android:id="@+id/currentTicket"
         layout="@layout/item_ticket"
         tools:layout_editor_absoluteX="8dp" />
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="8dp"
@@ -19,9 +20,9 @@
         app:cardCornerRadius="10dp"
         app:cardElevation="15dp"
         app:layout_constraintBottom_toTopOf="@+id/btnInstall"
-        app:layout_constraintEnd_toEndOf="@+id/include"
-        app:layout_constraintStart_toStartOf="@+id/include"
-        app:layout_constraintTop_toBottomOf="@+id/include">
+        app:layout_constraintEnd_toEndOf="@+id/currentTicket"
+        app:layout_constraintStart_toStartOf="@+id/currentTicket"
+        app:layout_constraintTop_toBottomOf="@+id/currentTicket">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -32,31 +33,31 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
+                android:text="Nom Client"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Nom Client" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/txvCustomerAddress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:text="Adresse"
                 app:layout_constraintEnd_toEndOf="@+id/txvCustomerName"
                 app:layout_constraintStart_toStartOf="@+id/txvCustomerName"
-                app:layout_constraintTop_toBottomOf="@+id/txvCustomerName"
-                tools:text="Adresse" />
+                app:layout_constraintTop_toBottomOf="@+id/txvCustomerName" />
 
             <TextView
                 android:id="@+id/txvCustomerCity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:text="Ville"
                 app:layout_constraintEnd_toEndOf="@+id/txvCustomerAddress"
                 app:layout_constraintStart_toStartOf="@+id/txvCustomerAddress"
-                app:layout_constraintTop_toBottomOf="@+id/txvCustomerAddress"
-                tools:text="Ville" />
+                app:layout_constraintTop_toBottomOf="@+id/txvCustomerAddress" />
 
             <ImageView
                 android:id="@+id/imvCustomerCountry"
@@ -99,9 +100,9 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView6"
-                tools:spanCount="2"
                 tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                tools:listitem="@layout/item_gateways"/>
+                tools:listitem="@layout/item_gateways"
+                tools:spanCount="2" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -111,11 +112,12 @@
         android:id="@+id/btnInstall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
         android:text="@string/install"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnSolve"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="675dp" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnSolve"
@@ -127,5 +129,23 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/btnInstall"
         app:layout_constraintTop_toTopOf="@+id/btnInstall" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/grpBtnSolveGateway"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:constraint_referenced_ids="btnInstall,btnSolve" />
+
+    <Button
+        android:id="@+id/btnOpen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:text="@string/open"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

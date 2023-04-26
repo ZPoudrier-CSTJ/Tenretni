@@ -31,7 +31,7 @@ class CustomerRepository {
                 } catch (ex: Exception) {
                     emit(ApiResult.Error(ex))
                 }
-                delay(Constants.Delay.TICKET_DELAY)
+                delay(Constants.Delay.GATEWAY_DETAIL_DELAY)
             }
         }.flowOn(Dispatchers.IO)
     }
