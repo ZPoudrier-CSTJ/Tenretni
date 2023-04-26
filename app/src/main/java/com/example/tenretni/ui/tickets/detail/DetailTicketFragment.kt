@@ -19,7 +19,11 @@ import com.example.tenretni.core.Constants
 import com.example.tenretni.core.DateHelper
 import com.example.tenretni.core.TranslationHelper
 import com.example.tenretni.databinding.FragmentDetailTicketBinding
+import com.example.tenretni.domain.models.Gateway
 import com.example.tenretni.domain.models.Ticket
+import com.example.tenretni.ui.customer.CustomerUiState
+import io.github.g00fy2.quickie.ScanQRCode
+import io.github.g00fy2.quickie.QRResult
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
@@ -27,6 +31,10 @@ import kotlinx.coroutines.flow.onEach
 class DetailTicketFragment : Fragment(R.layout.fragment_detail_ticket) {
 
         private val args: DetailTicketFragmentArgs by navArgs()
+
+    private lateinit var detailTicketRecyclerViewAdapter: DetailTicketRecyclerViewAdapter
+
+    private val scanQRCode = registerForActivityResult(ScanQRCode(), ::handleQuickieResult)
 
     private val binding: FragmentDetailTicketBinding by viewBinding()
     private val viewModel: DetailTicketViewModel by viewModels{
@@ -36,6 +44,11 @@ class DetailTicketFragment : Fragment(R.layout.fragment_detail_ticket) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        detailTicketRecyclerViewAdapter = DetailTicketRecyclerViewAdapter(listOf(), ::onRecyclerViewDetailTicketClick)
+
+        binding.btnInstall.setOnClickListener{
+            scanQRCode.launch(null)
+        }
         viewModel.detailTicketUiState.onEach {
             when(it){
                 is DetailTicketUiState.Error -> {
@@ -48,6 +61,35 @@ class DetailTicketFragment : Fragment(R.layout.fragment_detail_ticket) {
                 }
             }
         }.launchIn(viewLifecycleOwner.lifecycleScope)
+
+
+        viewModel.customerUiState.onEach {
+            when(it){
+                is CustomerUiState.Error -> {
+                    Toast.makeText(requireContext(), it.exception?.localizedMessage, Toast.LENGTH_LONG).show()
+                    requireActivity().supportFragmentManager.popBackStack()
+                }
+                CustomerUiState.Loading -> Unit
+                is CustomerUiState.Success -> {
+                    binding.rcvGateways.visibility = View.VISIBLE
+                    detailTicketRecyclerViewAdapter.gateways = it.gateways
+                    detailTicketRecyclerViewAdapter.notifyDataSetChanged()
+
+
+                }
+            }
+        }.launchIn(viewLifecycleOwner.lifecycleScope)
+    }
+
+    private fun handleQuickieResult(qrResult: QRResult){
+        when(qrResult){
+            is QRResult.QRSuccess -> {
+                viewModel.installGateway(qrResult.content.rawValue)
+            }
+            QRResult.QRUserCanceled -> Toast.makeText(requireContext(), getString(R.string.canceled_installation), Toast.LENGTH_LONG).show()
+            QRResult.QRMissingPermission -> Toast.makeText(requireContext(), getString(R.string.cam_permission_missing), Toast.LENGTH_LONG).show()
+            is QRResult.QRError -> qrResult.exception.localizedMessage
+        }
     }
 
     @SuppressLint("SetTextI18n")
@@ -79,4 +121,10 @@ class DetailTicketFragment : Fragment(R.layout.fragment_detail_ticket) {
 
 
     }
+
+    private fun onRecyclerViewDetailTicketClick(gateway: Gateway){
+
+    }
+
+
 }

@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.tenretni.core.ApiResult
 import com.example.tenretni.data.repositories.CustomerRepository
 import com.example.tenretni.data.repositories.TicketRepository
+import com.example.tenretni.domain.models.Gateway
 import com.example.tenretni.ui.customer.CustomerUiState
 import com.example.tenretni.ui.tickets.list.TicketsUiState
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,9 +20,11 @@ class DetailTicketViewModel(private val href: String) : ViewModel() {
     private val customerRepository = CustomerRepository()
     private val _ticketUiState = MutableStateFlow<DetailTicketUiState>(DetailTicketUiState.Loading)
     private val _customerUiState = MutableStateFlow<CustomerUiState>(CustomerUiState.Loading)
+    private var gatewayList: MutableList<Gateway> = mutableListOf()
+    private var customerHref: String = ""
 
     val detailTicketUiState = _ticketUiState.asStateFlow()
-    //val customerUiState = _customerUiState.asStateFlow()
+    val customerUiState = _customerUiState.asStateFlow()
 
 
     init {
@@ -33,12 +36,16 @@ class DetailTicketViewModel(private val href: String) : ViewModel() {
                         ApiResult.Loading -> DetailTicketUiState.Loading
                         is ApiResult.Success -> {
                             viewModelScope.launch {
+                               customerHref = apiResult.data.customer.href
                                 customerRepository.retrieveCustomerGateways(apiResult.data.customer.href).collect{apiResultCustomer ->
                                      _customerUiState.update {
                                          when(apiResultCustomer){
                                              is ApiResult.Error -> CustomerUiState.Error(apiResultCustomer.exception)
                                              ApiResult.Loading -> CustomerUiState.Loading
-                                             is ApiResult.Success -> CustomerUiState.Success(apiResultCustomer.data)
+                                             is ApiResult.Success ->{
+                                                 gatewayList = apiResultCustomer.data.toMutableList()
+                                                 CustomerUiState.Success(apiResultCustomer.data)
+                                             }
                                          }
                                      }
 
@@ -51,6 +58,23 @@ class DetailTicketViewModel(private val href: String) : ViewModel() {
             }
         }
     }
+    fun installGateway(qr: String){
+        viewModelScope.launch {
+            customerRepository.installGateway(customerHref, qr).collect{apiResult ->
+                _customerUiState.update {
+                    when(apiResult){
+                        is ApiResult.Error -> CustomerUiState.Error(apiResult.exception)
+                        ApiResult.Loading -> CustomerUiState.Loading
+                        is ApiResult.Success ->{
+                            gatewayList.add(apiResult.data)
+                            CustomerUiState.Success(gatewayList)
+                        }
+                    }
+                }
+            }
+        }
+
+    }
 
 
     class Factory(private val href: String): ViewModelProvider.Factory{
@@ -58,6 +82,8 @@ class DetailTicketViewModel(private val href: String) : ViewModel() {
             return modelClass.getConstructor(String::class.java).newInstance(href)
         }
     }
+
+
 
 
 

@@ -24,4 +24,6 @@
 
     <string name="txtGatewayStateOnline">En Ligne</string>
     <string name="txtGatewayStateOffline">Hors Ligne</string>
+    <string name="canceled_installation">Installation Annulée</string>
+    <string name="cam_permission_missing">Permission Caméra manquante</string>
 </resources>

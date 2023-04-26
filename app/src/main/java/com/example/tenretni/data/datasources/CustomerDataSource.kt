@@ -15,10 +15,9 @@ class CustomerDataSource: JsonDataSource() {
 
     fun installGateway(href:String, qr: String): Gateway {
         //Mettre en JSON
-        val body = json.encodeToString(qr)
         //Envoie au serveur avec un POST
         val fullpath = "$href/gateways"
-        val (_,_,result) = fullpath.httpPost().jsonBody(body).responseJson()
+        val (_,_,result) = fullpath.httpPost().jsonBody(qr).responseJson()
         //Gérer la réponse
         return when(result){
             is Result.Success -> json.decodeFromString(result.value.content)

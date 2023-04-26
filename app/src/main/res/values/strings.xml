@@ -22,6 +22,8 @@
 
     <string name="txtGatewayStateOnline">Online</string>
     <string name="txtGatewayStateOffline">Offline</string>
+    <string name="canceled_installation">Installation Canceled</string>
+    <string name="cam_permission_missing">Camera Permission is Missing</string>
     <!-- TODO: Remove or change this placeholder text -->
 
 
