@@ -9,19 +9,28 @@
     <include
         android:id="@+id/currentTicket"
         layout="@layout/item_ticket"
-        tools:layout_editor_absoluteX="8dp" />
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_margin="8dp"
+        android:layout_marginTop="6dp"
         app:cardCornerRadius="10dp"
         app:cardElevation="15dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintBottom_toTopOf="@+id/btnSolve"
         app:layout_constraintEnd_toEndOf="@+id/currentTicket"
         app:layout_constraintStart_toStartOf="@+id/currentTicket"
-        app:layout_constraintTop_toBottomOf="@+id/currentTicket">
+        app:layout_constraintTop_toBottomOf="@+id/currentTicket"
+        app:layout_constraintVertical_bias="0.10
+">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -31,7 +40,7 @@
                 android:id="@+id/txvCustomerName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="4dp"
                 android:text="Nom Client"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -42,7 +51,6 @@
                 android:id="@+id/txvCustomerAddress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:text="Adresse"
                 app:layout_constraintEnd_toEndOf="@+id/txvCustomerName"
                 app:layout_constraintStart_toStartOf="@+id/txvCustomerName"
@@ -52,7 +60,6 @@
                 android:id="@+id/txvCustomerCity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:text="Ville"
                 app:layout_constraintEnd_toEndOf="@+id/txvCustomerAddress"
                 app:layout_constraintStart_toStartOf="@+id/txvCustomerAddress"
@@ -62,22 +69,11 @@
                 android:id="@+id/imvCustomerCountry"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="-2dp"
                 app:layout_constraintEnd_toEndOf="@+id/txvCustomerCity"
                 app:layout_constraintStart_toStartOf="@+id/txvCustomerCity"
                 app:layout_constraintTop_toBottomOf="@+id/txvCustomerCity"
                 tools:src="@drawable/cad" />
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/title_gateways"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/imvCustomerCountry"
-                app:layout_constraintStart_toStartOf="@+id/imvCustomerCountry"
-                app:layout_constraintTop_toBottomOf="@+id/imvCustomerCountry" />
 
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -91,18 +87,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rcvGateways"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView6"
-                tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                tools:listitem="@layout/item_gateways"
-                tools:spanCount="2" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
@@ -111,24 +95,25 @@
         android:id="@+id/btnInstall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
         android:text="@string/install"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnSolve"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline" />
+        app:layout_constraintBottom_toBottomOf="@+id/btnSolve"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.67"
+        app:layout_constraintStart_toEndOf="@+id/btnSolve"
+        app:layout_constraintTop_toTopOf="@+id/btnSolve" />
 
     <Button
         android:id="@+id/btnSolve"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="-4dp"
         android:text="@string/solve"
-        app:layout_constraintBottom_toBottomOf="@+id/btnInstall"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btnInstall"
-        app:layout_constraintTop_toTopOf="@+id/btnInstall" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/rcvGateways"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline"
+        app:layout_constraintVertical_bias="1.0" />
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/grpBtnSolveGateway"
@@ -141,19 +126,52 @@
         android:id="@+id/btnOpen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:text="@string/open"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/guideline" />
+        app:layout_constraintTop_toTopOf="@+id/guideline"
+        app:layout_constraintVertical_bias="1.0" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.90" />
+        app:layout_constraintGuide_percent="0.63" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.45
+" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcvGateways"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnInstall"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/textView6"
+        tools:itemCount="2"
+        tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        tools:listitem="@layout/item_gateways"
+        tools:spanCount="2" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/title_gateways"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cardView2"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

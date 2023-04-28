@@ -27,7 +27,9 @@ class DetailTicketViewModel(private val href: String) : ViewModel() {
     val customerUiState = _customerUiState.asStateFlow()
 
 
-    init {
+
+
+    fun loadDetailTicket(){
         viewModelScope.launch {
             ticketRepository.retrieveOne(href).collect{apiResult ->
                 _ticketUiState.update {
@@ -36,18 +38,18 @@ class DetailTicketViewModel(private val href: String) : ViewModel() {
                         ApiResult.Loading -> DetailTicketUiState.Loading
                         is ApiResult.Success -> {
                             viewModelScope.launch {
-                               customerHref = apiResult.data.customer.href
+                                customerHref = apiResult.data.customer.href
                                 customerRepository.retrieveCustomerGateways(apiResult.data.customer.href).collect{apiResultCustomer ->
-                                     _customerUiState.update {
-                                         when(apiResultCustomer){
-                                             is ApiResult.Error -> CustomerUiState.Error(apiResultCustomer.exception)
-                                             ApiResult.Loading -> CustomerUiState.Loading
-                                             is ApiResult.Success ->{
-                                                 gatewayList = apiResultCustomer.data.toMutableList()
-                                                 CustomerUiState.Success(apiResultCustomer.data)
-                                             }
-                                         }
-                                     }
+                                    _customerUiState.update {
+                                        when(apiResultCustomer){
+                                            is ApiResult.Error -> CustomerUiState.Error(apiResultCustomer.exception)
+                                            ApiResult.Loading -> CustomerUiState.Loading
+                                            is ApiResult.Success ->{
+                                                gatewayList = apiResultCustomer.data.toMutableList()
+                                                CustomerUiState.Success(apiResultCustomer.data)
+                                            }
+                                        }
+                                    }
 
                                 }
                             }
@@ -58,6 +60,8 @@ class DetailTicketViewModel(private val href: String) : ViewModel() {
             }
         }
     }
+
+
     fun installGateway(qr: String){
         viewModelScope.launch {
             customerRepository.installGateway(customerHref, qr).collect{apiResult ->
@@ -73,6 +77,25 @@ class DetailTicketViewModel(private val href: String) : ViewModel() {
                 }
             }
         }
+
+    }
+
+    fun solveTicket(action: String){
+        viewModelScope.launch {
+            ticketRepository.updateOne(href, action).collect{apiResult ->
+                _ticketUiState.update {
+                    when(apiResult){
+                        is ApiResult.Error -> DetailTicketUiState.Error(apiResult.exception)
+                        ApiResult.Loading -> DetailTicketUiState.Loading
+                        is ApiResult.Success -> DetailTicketUiState.Success(apiResult.data)
+                    }
+                }
+
+            }
+
+        }
+
+
 
     }
 

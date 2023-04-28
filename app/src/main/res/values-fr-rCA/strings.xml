@@ -26,4 +26,9 @@
     <string name="txtGatewayStateOffline">Hors Ligne</string>
     <string name="canceled_installation">Installation Annulée</string>
     <string name="cam_permission_missing">Permission Caméra manquante</string>
+    <string name="txtPing">%d ns</string>
+    <string name="txtSpeed">%.2f Ebps</string>
+    <string name="txtSignal">%d dBm</string>
+    <string name="update">Mettre à jour</string>
+    <string name="reboot">Redémarrer</string>
 </resources>

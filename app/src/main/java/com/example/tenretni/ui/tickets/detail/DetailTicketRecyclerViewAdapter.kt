@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.example.tenretni.R
 import com.example.tenretni.core.ColorHelper
 import com.example.tenretni.core.TranslationHelper
 import com.example.tenretni.databinding.ItemGatewaysBinding
@@ -39,9 +40,9 @@ class DetailTicketRecyclerViewAdapter(
             if(gateway.connection.status == "Online"){
                 binding.txvNA.visibility = View.GONE
                 binding.grpGatewayInfo.visibility = View.VISIBLE
-                binding.txvPing.text = gateway.connection.ping.toString()
-                binding.txvDownload.text = gateway.connection.download.toString()
-                binding.txvUpload.text = gateway.connection.upload.toString()
+                binding.txvPing.text = itemView.context.getString(R.string.txtPing, gateway.connection.ping)
+                binding.txvDownload.text = itemView.context.getString(R.string.txtSpeed, gateway.connection.download)
+                binding.txvUpload.text = itemView.context.getString(R.string.txtSpeed, gateway.connection.upload)
 
             }
             else{

@@ -27,15 +27,17 @@
             android:id="@+id/grpGatewayInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="visible"
-            app:constraint_referenced_ids="txvPing,txvDownload,txvUpload" />
+            android:visibility="invisible"
+            app:constraint_referenced_ids="txvPing,txvDownload,txvUpload,imageView2,imageView4,imageView3" />
 
         <TextView
             android:id="@+id/txvPing"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="TextView"
+            tools:text="TextView"
+            android:textSize="18dp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/txvDownload"
             app:layout_constraintEnd_toEndOf="@+id/chipGatewayStatus"
             app:layout_constraintHorizontal_bias="0.5"
@@ -47,6 +49,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView"
+            android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/txvUpload"
             app:layout_constraintEnd_toEndOf="@+id/txvPing"
             app:layout_constraintHorizontal_bias="0.5"
@@ -58,6 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView"
+            android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/txvSerial"
             app:layout_constraintEnd_toEndOf="@+id/txvDownload"
             app:layout_constraintHorizontal_bias="0.5"
@@ -69,11 +73,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/txvUpload"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@+id/txvUpload"
-            app:layout_constraintTop_toBottomOf="@+id/txvUpload" />
+            app:layout_constraintEnd_toEndOf="@+id/chipGatewayStatus"
+            app:layout_constraintStart_toStartOf="@+id/chipGatewayStatus"
+            app:layout_constraintTop_toBottomOf="@+id/chipGatewayStatus"
+            app:layout_constraintVertical_bias="0.9" />
 
         <TextView
             android:id="@+id/txvNA"
@@ -87,6 +92,39 @@
             app:layout_constraintEnd_toEndOf="@+id/chipGatewayStatus"
             app:layout_constraintStart_toStartOf="@+id/chipGatewayStatus"
             app:layout_constraintTop_toBottomOf="@+id/chipGatewayStatus" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/txvPing"
+            app:layout_constraintEnd_toStartOf="@+id/txvPing"
+            app:layout_constraintHorizontal_bias="0.9"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/txvPing"
+            app:srcCompat="@drawable/ic_baseline_sync_alt_24" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/txvDownload"
+            app:layout_constraintEnd_toStartOf="@+id/txvDownload"
+            app:layout_constraintHorizontal_bias="0.8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/txvDownload"
+            app:srcCompat="@drawable/ic_outline_cloud_download_24" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/txvUpload"
+            app:layout_constraintEnd_toStartOf="@+id/txvUpload"
+            app:layout_constraintHorizontal_bias="0.75"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/txvUpload"
+            app:srcCompat="@drawable/ic_outline_cloud_upload_24" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

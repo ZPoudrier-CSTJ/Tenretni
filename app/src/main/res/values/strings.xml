@@ -24,6 +24,13 @@
     <string name="txtGatewayStateOffline">Offline</string>
     <string name="canceled_installation">Installation Canceled</string>
     <string name="cam_permission_missing">Camera Permission is Missing</string>
+    <string name="txtPing">%d ns</string>
+    <string name="txtSpeed">%.2f Ebps</string>
+    <string name="txtSignal">%d dBm</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="update">Update</string>
+    <string name="reboot">Reboot</string>
     <!-- TODO: Remove or change this placeholder text -->
 
 
